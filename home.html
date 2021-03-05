@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>记录</title>
+</head>
+<body>
+    <div>
+        uselddehao g19980208.
+        module.exports = {};
+        使用var req=require("./app.js");进行导入使用
+        export default在一个模块中只能有一个，当然也可以没有。export在一个模块中可以有多个。
+        export default的对象、变量、函数、类，可以没有名字。export的必须有名字。
+        export default对应的import和export有所区别
+        使用import data from "./app.js"进行导入使用
+        可以看到用export default，import语句不需要使用大括号；用export，对应的import语句需要使用大括号，一个模块只能有一个默认输出，所以export default只能使用一次
+
+        清缓存的办法，一个是 npm cache verify, 还有一个方法npm cache clean --force
+        删除项目所有依赖  npm uninstall *
+        //动态绑定class
+        :class="{leftBoxs:showIndex == 0,leftBoxss:showIndex == 1}"
+        html :style="{color:(index==0?conFontColor:'#000')}"
+        html :style="[{color:(index==0?conFontColor:'#000')},{fontSize:'20px'}]"
+
+
+        overflow: hidden;text-overflow:ellipsis;white-space: nowrap;    //不换行 超出变为省略号
+
+        axios({
+        url: '/sys/logout',
+        method: 'post',
+        headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'X-Access-Token':  logoutToken
+        }
+        })
+
+        1 $.ajax({
+        2     url:"http://www.microsoft.com",    //请求的url地址
+        3     dataType:"json",   //返回格式为json
+        4     async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+        5     data:{"id":"value"},    //参数值
+        6     type:"POST",   //请求方式
+        7     beforeSend:function(){
+        8         //请求前的处理
+        9     },
+        10     success:function(req){
+        11         //请求成功时处理
+        12     },
+        13     complete:function(){
+        14         //请求完成的处理
+        15     },
+        16     error:function(){
+        17         //请求出错处理
+        18     }
+        19 });
+
+        $.get(url,function(msg){
+
+        });
+        $.post(url,data,function(msg){
+
+        });
+
+
+        axios({
+        method:"请求的方式"
+        url:"请求的地址"
+        data:发送的数据
+        headers:请求头
+        }).then(()=>{})
+        .catch(()=>{})
+
+        //通过给定的ID来发送请求
+        axios.get('/user?ID=12345')
+        .then(function(response){
+        console.log(response);
+        })
+        .catch(function(error){
+        console.log(error);
+        });
+
+        axios.post('/user',{
+        firstName:'Fred',
+        lastName:'Flintstone'
+        })
+        .then(function(res){
+        console.log(res);
+        })
+        .catch(function(error){
+        console.log(error);
+        });
+
+        .then(res=>{
+        //成功后执行
+        })
+        .cache(err=>{
+        //错误执行
+        })
+        .finally(function(){
+        //总是执行
+        })
+
+
+        vue3.0后使用-------------------------------
+        v-slot:footer="message"
+        v-slot ：后边是插槽名称，=后边是组件内部绑定作用域值的映射。
+
+        vue2.0后使用-------------------------------
+        <!--匿名插槽-->
+        <!--<slot></slot>-->
+        <!--具名插槽-->
+        <!--<slot name="up"></slot>-->
+        <!--<template slot="zhang" slot-scope="item">-->
+
+            例子---
+            export function postAction(url,parameter) {
+            return axios({
+            url: url,
+            method:'post' ,
+            data: parameter
+            })
+            }
+
+            const mixinDevice = {
+            computed: {
+            ...mapState({
+            device: state => state.app.device,
+            })
+            },
+            methods: {
+            isMobile () {
+            return this.device === 'mobile'
+            },
+            isDesktop () {
+            return this.device === 'desktop'
+            }
+            }
+            }
+
+            export { mixin, mixinDevice }
+
+
+
+            总结：可以看到用export default，import语句不需要使用大括号；用export，对应的import语句需要使用大括号，一个模块只能有一个默认输出，所以export default只能使用一次。
+
+
+            @change="value => handleChange(value, param)"
+            @change="countTotalArea($event,'roomAreaSelfuse')"
+            改变传值方法
+
+            npm install 安装所有依赖
+            npm install --production 安装生产依赖
+            npm install xx --save 安装XX到生产环境依赖
+            npm install --save-dev 安装XX到开发环境依赖
+
+
+            overflow: hidden;text-overflow:ellipsis;white-space: nowrap;    //不换行 超出变为省略号
+
+
+            Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+            const target = { a: 1 };
+
+            const source1 = { b: 2 };
+            const source2 = { c: 3 };
+
+            Object.assign(target, source1, source2);
+            target // {a:1, b:2, c:3}
+            Object.assign方法的第一个参数是目标对象，后面的参数都是源对象。
+
+            注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+            pick用途
+            pick({ a: 1, b: '2', c: 3 }, ['a', 'c']); // { 'a': 1, 'c': 3 }
+
+
+
+            ES6
+
+            （ { } 花括号）
+            声明的变量是同名变量，写在{}里即可，变量之间用“，”隔开就行；
+            声明的变量是非同名变量，在{}里写上"   “：”＋ “变量名”    "  ，变量之间用“，”隔开  例如：
+            let { firstName: first_name, lastName: last_name } = obj;
+            为变量指定默认值，当对象中没有某个属性时，直接写上变量的名字加“=”即可， 例如：
+            let { firstName, lastName, myAge = 20 } = obj;
+            let { firstName: first_name, lastName: last_name, myAge: my_age = 20} = obj;
+            为已有变量重新赋值，（{}=obj），因为JS解析引擎不允许操作赋值符（=）左边出现花括号所以使用 "（）"将整个赋值语句包起来，使他成为一个表达式
+            嵌套对象解构，（俄罗斯套娃，哈哈~~）例如：obj里面的phone里面的number赋值给同名变量number
+            let { phone: { number, brand } } = obj;
+
+
+
+            forEach方法中的function回调有三个参数：
+            第一个参数是遍历的数组内容，
+            第二个参数是对应的数组索引，
+            第三个参数是数组本身
+
+
+            // 基础类型检测 (`null` 意思是任何类型都可以)
+            4     propA: null,
+            5     // 多种类型
+            6     propB: [String, Number],
+            7     // 必传且是字符串
+            8     propC: {
+            9       type: String,
+            10       required: true
+            11     },
+            12     // 数字，有默认值
+            13     propD: {
+            14       type: Number,
+            15       default: 100
+            16     },
+            17     // 数组/对象的默认值应当由一个工厂函数返回
+            18     propE: {
+            19       type: Object,
+            20       default: function () {
+            21         return { message: 'hello' }
+            22       }
+            23     },
+
+            type: Array,
+            // default: function () { return [] }
+            default: () => []
+
+
+
+            1.export与export default均可用于导出常量、函数、文件、模块等
+            2.你可以在其它文件或模块中通过import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用
+            3.在一个文件或模块中，export、import可以有多个，export default仅有一个
+            4.通过export方式导出，在导入时要加{ }，export default则不需要
+
+
+
+
+            1 Byte =8 bit
+
+            1 KB = 1,024 Bytes = 8192 bit
+
+            1 MB = 1,024 KB = 1,048,576 Bytes
+
+            1 GB = 1,024 MB = 1,048,576 KB
+
+            1 TB = 1,024 GB = 1,048,576 MB
+
+
+            看到obj对象中成功添加了属性b,值为‘obj.b’ 但是，并没有同步渲染到页面上,这是因为Vue最初实例化的时候，Obj中没有属性b，故而如果用this.obj.b添加属性的话Vue不会把他作为响应式监听。
+            所以应该要使用this.$set(‘对象名’,要修改的属性名,属性值),这样新添加的属性值会被Vue监听到并且同步渲染到页面上
+
+
+            mkdir webpackDemo // 创建项目
+            cd webpackDemo // 进入项目
+            mkdir app // 在项目中创建app文件
+            mkdir common // 在项目中创建common文件
+            cd app // 进入app文件夹
+            touch app.js // 创建app.js文件
+            touch main.js // 创建main.js文件
+            cd .. //返回到webpackDemo项目根目录
+            cd common // 进入common文件
+            touch index.html // 创建index.html文件
+
+            //路由的懒加载
+            const Home = () => import('../components/Home.vue')
+
+            query传参：
+
+            　　页面带参数跳转：this.$router.push({ path:'/city',name:'City', query: { cityid: this.Cityid,cityname:this.Cityname }})
+
+            　　路由配置：{path:'/city',name:'City',component:City},
+
+
+            　　接收参数：this.cityid = this.$route.query.cityid;
+
+            params传参：
+
+            　　页面带参数跳转：this.$router.push({ name:'City', params: { cityid: this.Cityid,cityname:this.Cityname }})
+
+            　　路由配置：{path:'/city/:cityid/:cityname',name:'City',component:City},
+
+
+
+            　　接收参数：this.cityid = this.$route.params.cityid;
+            也就是说使用params不在路由配参数跳转，只有第一次进入页面参数有效，刷新页面参数就会消失。
+
+
+            Promise是JS异步编程中的重要概念，异步抽象处理对象，是目前比较流行Javascript异步编程解决方案之一。这句话说的很明白了，Promise是一种用于解决异步问题的思路、方案或者对象方式
+            fn = new Promise(function (resolve, reject) {
+            let num = Math.ceil(Math.random() * 10)
+            if (num > 5) {
+            resolve(num)
+            } else {
+            reject(num)
+            }
+            })
+            // 第一次回调
+            fn.then((res)=>{
+            console.log(`res==>${res}`)
+            return new Promise((resolve,reject)=>{
+            if(2*res>15){
+            resolve(2*res)
+            }else{
+            reject(2*res)
+            }
+            })
+            }，(err)=>{
+            console.log(`err==>${err}`)
+            }).then((res)=>{ // 第二次回调
+            console.log(res)
+            }，(err)=>{
+            console.log(`err==>${err}`)
+            })
+
+
+            vuex
+            this.$store.commit   用来调用mutations 中的方法
+            this.$store.dispatch  用来调用actions 中的方法
+            this.$store.dispatch('asyncIncrementss','颠三倒四').then(res => {
+            // console.log("res",res);
+            //    console.log("等待结束了*-----------------------------");
+            //  })
+
+            import {mapState} from 'vuex'
+            ...mapState([
+            'latitude','longitude'
+            ]),
+            //另一种方法
+            // ...mapState({  //这里的...不是省略号了,是对象扩展符
+            //   latitude:'latitude',
+            //   longitude:'longitude'
+            // })
+            ...mapState({
+            count: state => state.count
+            }),
+
+            //方法三：mapMutations -------------------------- 此方法只能写在 methods里面，在其他地方调用即可
+            ...mapMutations(['add', 'reduce'])
+
+
+            async和await
+            function resolveAfter2Seconds() {
+            return new Promise(resolve => {
+            setTimeout(() => {
+            resolve('resolved');
+            }, 2000);
+            });
+            }
+
+            async function asyncCall() {
+            console.log('calling');
+            const result = await resolveAfter2Seconds();
+            console.log(result);
+            // expected output: "resolved"
+            }
+
+            asyncCall();
+            //
+            await
+            如果它等到的不是一个 Promise 对象，那 await 表达式的运算结果就是它等到的东西。
+            如果它等到的是一个 Promise 对象，await 就忙起来了，它会阻塞后面的代码，等着 Promise 对象 resolve，然后得到 resolve 的值，作为 await 表达式的运算结果。
+
+
+
+            connectSocketInit(uuId) {
+            // 创建一个this.socketTask对象【发送、接收、关闭socket都由这个对象操作】
+            this.socketTask = uni.connectSocket({
+            // 【非常重要】必须确保你的服务器是成功的,如果是手机测试千万别使用ws://127.0.0.1:9099【特别容易犯的错误】
+            url: "ws://112.14.55.153:28764/websocket?user=" + uuId,
+            success(data) {
+            console.log("websocket连接成功");
+            },
+            });
+
+            // 消息的发送和接收必须在正常连接打开中,才能发送或接收【否则会失败】
+            this.socketTask.onOpen((res) => {
+            console.log("WebSocket连接正常打开中...！");
+            this.is_open_socket = true;
+            // 注：只有连接正常打开中 ，才能正常成功发送消息
+            // this.socketTask.send({
+            // 	data: "uni-app发送一条消息",
+            // 	async success() {
+            // 		console.log("消息发送成功");
+            // 	},
+            // });
+            // 注：只有连接正常打开中 ，才能正常收到消息
+            this.socketTask.onMessage((res) => {
+            console.log("收到服务器内容：" + res.data);
+            if (res.data == '成功') {
+            this.status = true;
+            uni.showToast({
+            title: '采集成功',
+            icon: 'success',
+            duration: 1000,
+            mask: true,
+            });
+            }
+            if (res.data == '失败') {
+            this.status = false;
+            uni.showToast({
+            title: '采集失败',
+            icon: 'none',
+            duration: 1000,
+            mask: true,
+            });
+            }
+
+
+            });
+            })
+            // 这里仅是事件监听【如果socket关闭了会执行】
+            this.socketTask.onClose(() => {
+            console.log("已经被关闭了")
+            })
+            },
+
+            // 关闭websocket【离开这个页面的时候执行关闭】
+            closeSocket() {
+            this.socketTask.close({
+            success(res) {
+            this.is_open_socket = false;
+            console.log("关闭成功", res)
+            },
+            fail(err) {
+            console.log("关闭失败", err)
+            }
+            })
+            },
+
+            clickRequest() {
+            if (this.is_open_socket) {
+            // websocket的服务器的原理是:发送一次消息,同时返回一组数据【否则服务器会进去死循环崩溃】
+            this.socketTask.send({
+            data: "请求一次发送一次message",
+            async success() {
+            console.log("消息发送成功");
+            },
+            });
+            }
+            },
+
+            keep-alive 中创建的组件，会多出两个生命周期的钩子: activated 与 deactivated
+
+
+            .clearsFix:after {
+            content: "";
+            display: block;
+            visibility: hidden;
+            height: 0;
+            line-height: 0;
+            clear: both;
+            }
+    </div>
+</body>
+</html>
