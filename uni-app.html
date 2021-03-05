@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>uni-app</title>
+</head>
+<body>
+        <div>
+            uni.request({
+            url:app.globalData.routes.host + '/loginstaff/phoneLogin',
+            data: {
+            'mobile': 'phoneNum',
+            'captcha': 'yanNum',
+            'nameList': dada
+            },
+            method: 'POST',
+            header: {
+            'Content-Type': 'application/json',
+            "X-Access-Token":app.globalData.routes.token
+            },
+            success: (res) => {
+            //传值
+            var pages = getCurrentPages(); //当前页面栈
+            var beforePage = pages[pages.length - 2];
+            beforePage.setData({
+            cars: date
+            })
+            beforePage.pushcars();
+            uni.showToast({
+            title: res.data.message,
+            icon: 'success',
+            duration: 500
+            });
+            setTimeout(function () {
+            uni.navigateBack({
+            delta: 1
+            })
+            }, 500)
+            console.log(res);
+            }
+            })
+
+
+            var ids = e.currentTarget.id
+
+            wx.showLoading({
+            title: '加载中',
+            mask: true,
+            })
+
+
+            //传值
+            var pages = getCurrentPages(); //当前页面栈
+            var beforePage = pages[pages.length - 2];
+            beforePage.setData({
+            cars: date
+            })
+            beforePage.pushcars();
+            wx.navigateBack({
+            delta: 1
+            })
+
+
+            //请求成功后返回
+            wx.showToast({
+            title: res.data.message,
+            icon: 'success',
+            duration: 2000
+            });
+            setTimeout(function () {
+            wx.navigateBack({
+            delta: 1
+            })
+            }, 1000)
+
+            fail: function () {
+            wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 1000
+            });
+            }
+            wx.showToast({
+            title: '加载失败',
+            icon: 'loading'
+            })
+
+
+
+            get____________________________________________
+            var that = this;
+            uni.request({
+            url: app.globalData.routes.host + '/quantityrequest/delete',
+            data: {
+            'id': this.id
+            },
+            method: 'get',
+            header: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-Access-Token":app.globalData.routes.token
+            },
+            success:(res)=> {
+            console.log("成功了哦", res);
+            //请求成功后返回
+            uni.showToast({
+            title: res.data.message,
+            icon: 'success',
+            duration: 1000,
+            mask: true,
+            });
+            setTimeout(function () {
+            uni.navigateBack({
+            delta: 1
+            })
+            }, 1000)
+            }
+            });
+
+
+
+
+
+            bindlongpress="deleteImage" data-item="{{item}}" data-index="{{index}}"
+            //图片删除
+            deleteImage: function (e) {
+            console.log("eee", e);
+            var that = this;
+            var tempFilePaths = that.data.tempFilePaths;
+            var index = e.currentTarget.dataset.index; //获取当前长按图片下标
+            var shishi = e.currentTarget.dataset.item   //获取图片名
+            var indexs = e.currentTarget.dataset.index    //获取index
+            var straa = shishi.split('boot/');
+            console.log("剪切后",straa[1]);
+            var deleList = that.data.deleList
+            console.log("deleList",deleList)
+            wx.showModal({
+            title: '提示',
+            content: '确定要删除此图片吗？',
+            success: function (res) {
+            if (res.confirm) {
+            var files = that.data.files
+            deleList.push(straa[1]);
+            files.splice(indexs, 1);
+            var imgVal = that.data.imgVal
+            for (var i = 0; i < imgVal.length;i++){
+            if (imgVal[i] == straa[1]){
+            imgVal.splice(i, 1);
+            }
+            }
+            that.setData({
+            imgVal: imgVal,
+            deleList: deleList,
+            files: files
+            })
+            } else if (res.cancel) {
+            console.log('点击取消了');
+            return false;
+            }
+            that.setData({
+            tempFilePaths
+            });
+            }
+            })
+            },
+
+
+
+            deleteimg:function(){
+            var that = this;
+            wx.request({
+            url: app.routes.host + '/equipmentstatus/deleteImageByImage',
+            data: {
+            'imageList': that.data.deleList,
+            },
+            method: 'POST',
+            header: {
+            'Content-Type': 'application/json',
+            "X-Access-Token": app.routes.token
+            },
+            success: function (res) {
+            console.log("图片删除了哦》》》》》》》》》》》》》》》》》》》》》》》》",res);
+            }
+            })
+            }
+            //限制图片格式
+            var reff = tempFilePaths.substring(tempFilePaths.length-3)
+            if(reff != 'jpg'&&reff != 'png'){
+            return wx.showToast({
+            title: '只能上传.png、.jpg 格式',
+            icon: 'none',
+            image: '',
+            duration: 2000,
+            mask: true,
+            })
+            }
+
+
+
+            //正则
+            var name = e.detail.value.craneDriver
+            var phone = e.detail.value.craneDriverPhone
+
+            var reg = new RegExp("^[\u4e00-\u9fa5]{0,}$");
+            if (name == '' || !new RegExp(/^[\u4e00-\u9fa5]{0,}$/).test(name)) {
+            console.log("数据不正确");
+            wx.showToast({
+            title: '姓名格式错误',
+            icon: 'none',
+            duration: 1000，
+            mask: true,
+            });
+            return false
+            }
+
+            ^\d{11}$
+
+            if (phone == '' || !new RegExp(/^1\d{10}$/).test(phone)) {
+            wx.showToast({
+            title: '手机号码格式错误',
+            icon: 'none',
+            duration: 1000,
+            mask: true,
+            });
+            return false
+            }
+
+            this.heights = uni.getStorageSync('phoneHeight');
+
+
+            //图片上传
+
+           <!-- <view style="background: #FFFFFF;" class="uni-list-cell cell-pd">
+                <view class="uni-uploader">
+                    <view style="display: flex;align-items: center;padding: 10px;">
+                        <view style="flex: 1;" class="uni-uploader-title">上传照片或拍摄图片（最多3张）</view>
+                    </view>
+                    <view class="uni-uploader-body" style="padding: 10px;margin-top: 0px;">
+                        <view class="uni-uploader__files">
+                            <block v-for="(item,index) in files" :key="index">
+                                <view class="uni-uploader__file" style="width: 95px;height: 95px;box-sizing: border-box;">
+                                    <image @longpress="deleteImage" style="display: block;width: 95px;height: 95px;" :src="item" :data-src="item" :data-index="index" @tap="previewImage"></image>
+                                </view>
+                            </block>
+                            <view class="uni-uploader__input-box" v-if="files.length <3">
+                                <view style="width: 100px;height: 100px;" class="uni-uploader__input" @tap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>-->
+
+
+
+            imageList: [],
+            files: [],
+
+
+
+            //选中图片
+            chooseImage: async function() {
+            // TODO 选择相机或相册时 需要弹出actionsheet，目前无法获得是相机还是相册，在失败回调中处理
+            var that = this;
+            uni.showActionSheet({
+            itemList: ['从相册中选择', '拍照'],
+            itemColor: "#000000",
+            success: function(res) {
+            if (!res.cancel) {
+            if (res.tapIndex == 0) {
+            that.chooseWxImage('album')
+            } else if (res.tapIndex == 1) {
+            that.chooseWxImage('camera')
+            }
+            }
+            }
+            })
+            },
+
+
+
+            chooseWxImage: function(type) {
+            var that = this;
+            uni.chooseImage({
+            // count: 3,
+            sizeType: ['original', 'compressed'],
+            sourceType: [type],
+            success: (res) => {
+            console.log("ress-----------------------------------1", res);
+            console.log("ress-----------------------------------2", res.tempFilePaths[0]);
+            var tempFilePaths = res.tempFilePaths[0];
+            // this.files.push(tempFilePaths);
+            uni.showLoading({
+            title: '加载中',
+            mask: true,
+            })
+            // this.files = this.files.concat(tempFilePaths);
+            uni.uploadFile({
+            url: app.globalData.routes.host + "sys/common/upload",
+            filePath: tempFilePaths,
+            // filePath: reffs,
+            fileType: 'image',
+            name: 'file',
+            // name: 'data',
+            header: {
+            // "Content-Type": "multipart/form-data",
+            "X-Access-Token": app.globalData.routes.token
+            },
+            success: (res) => {
+            console.log("成功以后", res.data);
+            var data = JSON.parse(res.data)
+            console.log("成功以后datadatadatadata", data);
+            var imageList = this.imageList
+
+            imageList.push(data.message);
+
+            var imgsrc = app.globalData.routes.host + data.message;
+            console.log("imgsrc", imgsrc);
+
+            // this.imageList = imageList;
+
+            var filess = this.files;
+            console.log("filessfilessfilessfiless", filess);
+            console.log("filessfilessfilessfiless", this.files);
+            console.log("showList", this.showList);
+            filess.push(imgsrc);
+            console.log("imgsrc2222222222222", imgsrc);
+
+            this.files = filess;
+            this.imageList = imageList;
+            // that.setData({
+            // 	imageList: imageList,
+            // 	files: that.data.files.concat(imgsrc)
+            // })
+            console.log("files", this.files);
+            //如果是最后一张,则隐藏等待中
+            uni.showToast({
+            title: '上传成功',
+            icon: 'success',
+            duration: 1000,
+            mask: true
+            });
+            },
+            fail: function(res) {
+            console.log("失败了")
+            uni.hideToast();
+            uni.showToast({
+            title: '上传失败',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+            });
+            }
+            });
+
+            }
+            })
+            },
+
+
+            //查看图片
+            previewImage: function(e) {
+            console.log("wwwwwwwwwwwwwwww", e);
+            var current = e.currentTarget.dataset.src
+            var index = e.currentTarget.dataset.index
+            // var indexss = Number(index);
+            uni.previewImage({
+            current: current,
+            urls: this.files
+            })
+            },
+
+
+
+
+            deleteImage: function (e) {
+            console.log("eee", e);
+            var that = this;
+
+            var items = e.currentTarget.dataset.src //获取图片名
+            var indexs = e.currentTarget.dataset.index //获取index
+            var straa = items.split('boot/');
+            console.log("剪切后", straa[1]);
+            var deleList = that.deleList
+            uni.showModal({
+            title: '提示',
+            content: '确定要删除此图片吗？',
+            success: function (res) {
+            if (res.confirm) {
+            var files = that.files
+            deleList.push(straa[1]);
+            files.splice(indexs, 1);
+            var imageList = that.imageList
+            for (var i = 0; i < imageList.length; i++) {
+            if (imageList[i] == straa[1]) {
+            imageList.splice(i, 1);
+            }
+            }
+            that.imageList = imageList
+            that.deleList = deleList
+            that.files = files
+            console.log("deleList,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",that.deleList);
+
+            } else if (res.cancel) {
+            console.log('点击取消了');
+            return false;
+            }
+
+            }
+            })
+            },
+
+
+
+            uni.showModal({
+            title: '弹窗标题',
+            content: '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
+            confirmText: "主操作",
+            cancelText: "辅助操作",
+            success:(res)=> {
+            console.log(res);
+            if (res.confirm) {
+            console.log('用户点击主操作')
+            }else{
+            console.log('用户点击辅助操作')
+            }
+            }
+            });
+
+
+
+
+           <!-- <view :class="'weui-search-bar ' + (inputShowed ? 'weui-search-bar_focusing' : '')" id="searchBar">
+                <form class="weui-search-bar__form">
+                    <view class="weui-search-bar__box">
+                        <i class="weui-icon-search"></i>
+                        <input type="text" class="weui-search-bar__input" placeholder="搜索" :value="inputVal" :focus="inputShowed" @input="inputTyping"></input>
+                        <span class="weui-icon-clear" v-if="inputVal.length > 0" @tap="clearInput"></span>
+                    </view>
+                    <label class="weui-search-bar__label" @tap="showInput">
+                        <i class="weui-icon-search"></i>
+                        <span class="weui-search-bar__text">搜索</span>
+                    </label>
+                </form>
+                <view class="weui-search-bar__cancel-btn" @tap="hideInput">取消</view>
+            </view>-->
+
+
+
+
+            inputShowed: false,
+            inputVal: ""
+
+
+
+
+            showInput: function () {
+            this.setData({
+            inputShowed: true
+            });
+            },
+            hideInput: function () {
+            this.setData({
+            inputVal: "",
+            inputShowed: false
+            });
+            },
+            clearInput: function () {
+            this.setData({
+            inputVal: ""
+            });
+            },
+            inputTyping: function (e) {
+            this.setData({
+            inputVal: e.detail.value
+            });
+            }
+
+
+            gettime: function () {
+            var timestamp = Date.parse(new Date());
+            var date = new Date(timestamp);
+            //获取年份  
+            var Y = date.getFullYear();
+            //获取月份  
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+            //获取当日日期 
+            var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            console.log("当前时间：" + Y + '-' + M + '-' + D);
+            var times = Y + '-' + M + '-' + D;
+            this.setData({
+            date: times
+            })
+            },
+
+
+            1、$off提供的回调必须跟$on的回调为同一个才能移除这个回调的监听器。如果只提供事件，不提供回调函数，则移除该事件所有的监听器。所以一般建议直接uni.$off('xxx')，销毁监听里不使用回调，简单粗暴好用。
+            2、$on监听函数，拿数据用。$emit传数据用。
+            3、如果使用了$on，请不要忘记在onUnload()生命周期里$off销毁监听，否则会重复监听。（也可不在onUnload里执行销毁，在其他地方也可）
+
+
+
+
+
+
+
+            <!-- 发货搜索框 -->
+           <!-- <view class="fadeIn" v-if="dialog1">
+                <view class="weui-mask" @tap="close"></view>
+                <view class="weui-half-screen-dialog">
+                    <view class="weui-half-screen-dialog__hd" style="position: relative;">
+                        <view class="weui-half-screen-dialog__hd__side" @tap="close">
+                            <a class="weui-icon-btn">关闭<i class="weui-icon-close-thin"></i></a>
+                        </view>
+                        <view class="weui-half-screen-dialog__hd__main">
+                            <strong class="weui-half-screen-dialog__title">内部编号</strong>
+                        </view>
+                        <view style="position: absolute;right: 5px;color: #0099FF;">确定</view>
+                    </view>
+
+                    <view class="weui-half-screen-dialog__bd" style="padding-top:5px;">
+
+                        &lt;!&ndash; //搜索框 &ndash;&gt;
+                        <view class="seek_box">
+                            <view class="page__bd">
+                                <view style="background-color: #fff;" :class="'weui-search-bar ' + (inputShowed ? 'weui-search-bar_focusing' : '')"
+                                      id="searchBar">
+                                    <form class="weui-search-bar__form" style="background-color: #ececec;">
+                                        <view class="weui-search-bar__box">
+                                            <i class="weui-icon-search"></i>
+                                            <input type="text" class="weui-search-bar__input" placeholder="搜索" :value="inputVal" :focus="inputShowed"
+                                                   @input="inputTyping"></input>
+                                            <span class="weui-icon-clear" v-if="inputVal.length > 0" @tap="clearInput"></span>
+                                        </view>
+                                        <label class="weui-search-bar__label" style="background:#ececec;" @tap="showInput">
+                                            <i class="weui-icon-search"></i>
+                                            <span class="weui-search-bar__text">搜索</span>
+                                        </label>
+                                    </form>
+                                    <view class="weui-search-bar__cancel-btn" @tap="hideInput">取消</view>
+                                </view>
+                            </view>
+                        </view>
+
+                        &lt;!&ndash; //内容 &ndash;&gt;
+                        <scroll-view scroll-y lower-threshold="20" @scrolltolower="scrollToLoweryet" style="height: 50vh;">
+                            <view class="content_box">
+                                <view class="page-section">
+
+
+
+                                    <radio-group @change="radioChange">
+                                        <label class="uni-list-cell uni-list-cell-pd" style="justify-content: flex-start;" v-for="(item, index) in items" :key="item.value">
+                                            <view>
+                                                <radio :value="item.value" :checked="index === current" />
+                                            </view>
+                                            <view>{{item.name}}</view>
+                                        </label>
+                                    </radio-group>
+
+
+
+
+                                    &lt;!&ndash; </view> &ndash;&gt;
+                                </view>
+                            </view>
+                        </scroll-view>
+
+                    </view>
+                </view>
+            </view>
+
+
+
+
+
+
+
+
+            <view v-if="istrue" class="fadeIn" @tap="closeDialog">
+                <view class="weui-mask" style="z-index: 900;"></view>
+                <view class="weui-actionsheet weui-actionsheet_toggle">
+
+
+                    <view class="weui-actionsheet__menu">
+                        <view v-if="editpower" class="weui-actionsheet__cell" :data-id="mainData.id" :data-equ="mainData.equipmentId" @tap="notBianji">编辑</view>
+                        <view v-if="replapower&&chang" class="weui-actionsheet__cell" :data-id="mainData.id" :data-equ="mainData.equipmentId"
+                              @tap="notshebei">更换设备</view>
+                        <view v-if="delepower" class="weui-actionsheet__cell weui-actionsheet__cell_warn" :data-id="mainData.id" @tap.stop="notDel">删除</view>
+                    </view>
+                    <view class="weui-actionsheet__action">
+                        <view class="weui-actionsheet__cell" @tap="closeDialog">取消</view>
+                    </view>
+
+                </view>
+            </view>
+
+
+
+
+
+
+
+            <view class="onlyBox">
+                <view style="width: 100px;">问题描述</view>
+                <view style="flex: 1;">
+                    <input type="text" value="describe" @input="describeFun"/>
+                </view>
+            </view>-->
+
+            .onlyBox{
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ECECEC5e;
+            background: #FFFFFF;
+
+            }
+
+
+
+
+          <!--  <uni-swipe-action v-for="(item,index) in diaoed">
+                <uni-swipe-action-item :threshold="0" :right-options="options2" @click="slideButtonTap($event,index)" :id="item.id"
+                                       :data-index="index">
+                    <view class="content-box">
+                        <text class="content-text">{{item.craneDriver}}</text>
+                    </view>
+                </uni-swipe-action-item>
+            </uni-swipe-action>-->
+
+
+
+
+            <!-- //打开操作框 -->
+            <!--<view class="powerBox" @tap.stop="openPower" v-if="installGrea">
+                <image style="width: 30px;height: 30px;" src="../../../../../static/images/setting.png" mode=""></image>
+            </view>
+
+            <view v-if="istrue" class="fadeIn" @tap="closeDialog">
+                <view class="weui-mask" style="z-index: 900;"></view>
+                <view class="weui-actionsheet weui-actionsheet_toggle">
+                    <view class="weui-actionsheet__menu">
+                        <view class="weui-actionsheet__cell" v-if="installEdit" :data-id="mainData.id" @tap.stop="editInstall">编辑</view>
+                        <view class="weui-actionsheet__cell weui-actionsheet__cell_warn" v-if="installDel" :data-id="mainData.id"
+                              @tap.stop="delInstall">删除</view>
+                    </view>
+                    <view class="weui-actionsheet__action">
+                        <view class="weui-actionsheet__cell" @tap="closeDialog">取消</view>
+                    </view>
+                </view>
+            </view>-->
+
+        </div>
+</body>
+</html>
