@@ -1,0 +1,379 @@
+wx.request({
+      url: app.routes.host + '/loginstaff/phoneLogin',
+      data: {
+        'mobile': 'phoneNum',
+        'captcha': 'yanNum',
+        'nameList': dada
+      },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+        "X-Access-Token": app.routes.token
+      },
+      success: (res) => {
+        //传值
+        var pages = getCurrentPages(); //当前页面栈
+        var beforePage = pages[pages.length - 2];
+        beforePage.setData({
+          cars: date
+        })
+        beforePage.pushcars();
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 2000
+        });
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000)
+        console.log(res);
+      }
+    })
+
+
+var ids = e.currentTarget.id
+
+        wx.showLoading({
+          title: '加载中',
+          mask: true,
+        })
+
+
+	//传值
+    var pages = getCurrentPages(); //当前页面栈
+    var beforePage = pages[pages.length - 2];
+    beforePage.setData({
+      cars: date
+    })
+    beforePage.pushcars();
+    wx.navigateBack({
+      delta: 1
+    })
+
+
+//请求成功后返回
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 2000
+        });
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000)
+
+      fail: function () {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 1000
+        });
+      }
+          wx.showToast({
+            title: '加载失败',
+            icon: 'loading'
+          })
+
+
+
+get____________________________________________
+    var that = this;
+    wx.request({
+      url: app.routes.host + '/quantityrequest/delete',
+      data: {
+        'id': this.data.id
+      },
+      method: 'get',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        "X-Access-Token": app.routes.token
+      },
+      success:(res)=> {
+        console.log("成功了哦", res);
+        //请求成功后返回
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 1000,
+      mask: true,
+        });
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000)
+      }
+    });
+
+
+
+
+
+bindlongpress="deleteImage" data-item="{{item}}" data-index="{{index}}"
+  //图片删除
+  deleteImage: function (e) {
+    console.log("eee", e);
+    var that = this;
+    var tempFilePaths = that.data.tempFilePaths;
+    var index = e.currentTarget.dataset.index; //获取当前长按图片下标
+    var shishi = e.currentTarget.dataset.item   //获取图片名
+    var indexs = e.currentTarget.dataset.index    //获取index
+    var straa = shishi.split('boot/');
+    console.log("剪切后",straa[1]);
+    var deleList = that.data.deleList
+    console.log("deleList",deleList)
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此图片吗？',
+      success: function (res) {
+        if (res.confirm) {
+          var files = that.data.files
+          deleList.push(straa[1]);
+          files.splice(indexs, 1);
+          var imgVal = that.data.imgVal
+          for (var i = 0; i < imgVal.length;i++){
+            if (imgVal[i] == straa[1]){
+              imgVal.splice(i, 1);
+              }
+          }
+          that.setData({
+            imgVal: imgVal,
+            deleList: deleList,
+            files: files
+          })
+        } else if (res.cancel) {
+          console.log('点击取消了');
+          return false;
+        }
+        that.setData({
+          tempFilePaths
+        });
+      }
+    })
+  },
+
+
+
+  deleteimg:function(){
+    var that = this;
+    wx.request({
+      url: app.routes.host + '/equipmentstatus/deleteImageByImage',
+      data: {
+        'imageList': that.data.deleList,
+      },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+      "X-Access-Token": app.routes.token
+      },
+      success: function (res) {
+        console.log("图片删除了哦》》》》》》》》》》》》》》》》》》》》》》》》",res);
+      }
+    })
+  }
+	//限制图片格式
+        var reff = tempFilePaths.substring(tempFilePaths.length-3)
+        if(reff != 'jpg'&&reff != 'png'){
+          return wx.showToast({
+            title: '只能上传.png、.jpg 格式',
+            icon: 'none',
+            image: '',
+            duration: 2000,
+            mask: true,
+          })
+        }
+
+
+
+	//正则
+    var name = e.detail.value.craneDriver
+    var phone = e.detail.value.craneDriverPhone
+
+    var reg = new RegExp("^[\u4e00-\u9fa5]{0,}$");
+    if (name == '' || !new RegExp(/^[\u4e00-\u9fa5]{0,}$/).test(name)) {
+      console.log("数据不正确");
+      wx.showToast({
+        title: '姓名格式错误',
+        icon: 'none',
+        duration: 1000，
+      mask: true,
+      });
+      return false
+    }
+
+    if (phone == '' || !new RegExp(/^1\d{10}$/).test(phone)) {
+      wx.showToast({
+        title: '手机号码格式错误',
+        icon: 'none',
+        duration: 1000,
+      mask: true,
+      });
+      return false
+    }
+
+
+
+//图片上传
+
+<block wx:for="{{files}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                        <image bindlongpress="deleteImage" data-item="{{item}}" data-index="{{index}}" class="weui-uploader__img" src="{{item}}" mode="aspectFill" delete="true"/>
+                                    </view>
+             </block>
+
+
+
+  chooseimage: function () {
+    var that = this;
+    wx.showActionSheet({
+      itemList: ['从相册中选择', '拍照'],
+      itemColor: "#000000",
+      success: function (res) {
+        if (!res.cancel) {
+          if (res.tapIndex == 0) {
+            that.chooseWxImage('album')
+          } else if (res.tapIndex == 1) {
+            that.chooseWxImage('camera')
+          }
+        }
+      }
+    })
+
+  },
+
+
+
+  chooseWxImage: function (type) {
+    var that = this;
+    wx.chooseImage({
+      // count: 3,
+      sizeType: ['original', 'compressed'],
+      sourceType: [type],
+      success: function (res) {
+        console.log("ress", res);
+        that.setData({
+          tempFilePaths: res.tempFilePaths[0],
+          // files: that.data.files.concat(res.tempFilePaths)
+        })
+        var tempFilePaths = res.tempFilePaths[0];
+       
+        var reff = tempFilePaths.substring(tempFilePaths.length-3)
+        if(reff != 'jpg'&& reff != 'png'){
+          return wx.showToast({
+            title: '只能上传.png、.jpg 格式',
+            icon: 'none',
+            image: '',
+            duration: 2000,
+            mask: true,
+          })
+        }
+        wx.showLoading({
+          title: '加载中',
+          mask: true,
+        })
+        wx.uploadFile({
+          url: app.routes.host + "sys/common/upload",
+          filePath: tempFilePaths,
+          name: 'file',
+          header: {
+            "Content-Type": "multipart/form-data",
+            "X-Access-Token": app.routes.token
+          },
+          success: function (res) {
+            console.log("成功以后", res.data);
+            var data = JSON.parse(res.data)
+            console.log("成功了", data.message);
+            var imageList = that.data.imageList
+            imageList.push(data.message);
+
+            var imgsrc = app.routes.host + data.message;
+            console.log("imgsrc", imgsrc);
+            that.setData({
+              imageList: imageList,
+              files: that.data.files.concat(imgsrc)
+            })
+            console.log("files", that.data.files);
+            //如果是最后一张,则隐藏等待中
+            wx.showToast({
+              title: '上传成功',
+              icon: 'success',
+              duration: 1000,
+              mask: true
+            });
+          },
+          fail: function (res) {
+            console.log("失败了")
+            wx.hideToast();
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none',
+              duration: 1000,
+              mask: true
+            });
+          }
+        });
+      }
+    })
+  },
+
+  //图片删除
+  deleteImage: function (e) {
+    console.log("eee", e);
+    var that = this;
+    var tempFilePaths = that.data.tempFilePaths;
+    var index = e.currentTarget.dataset.index; //获取当前长按图片下标
+    var shishi = e.currentTarget.dataset.item   //获取图片名
+    var indexs = e.currentTarget.dataset.index    //获取index
+    var straa = shishi.split('boot/');
+    console.log("剪切后", straa[1]);
+    var deleList = that.data.deleList
+    console.log("deleList", deleList)
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此图片吗？',
+      success: function (res) {
+        if (res.confirm) {
+          var files = that.data.files
+          deleList.push(straa[1]);
+          files.splice(indexs, 1);
+          var imageList = that.data.imageList
+          for (var i = 0; i < imageList.length; i++) {
+            if (imageList[i] == straa[1]) {
+              imageList.splice(i, 1);
+            }
+          }
+          that.setData({
+            imageList: imageList,
+            deleList: deleList,
+            files: files
+          })
+        } else if (res.cancel) {
+          console.log('点击取消了');
+          return false;
+        }
+        that.setData({
+          tempFilePaths
+        });
+      }
+    })
+  },
+
+
+
+    wx.showModal({
+      title: '弹窗标题',
+      content: '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
+      confirmText: "主操作",
+      cancelText: "辅助操作",
+      success: function (res) {
+          console.log(res);
+          if (res.confirm) {
+              console.log('用户点击主操作')
+          }else{
+              console.log('用户点击辅助操作')
+          }
+      }
+  });
